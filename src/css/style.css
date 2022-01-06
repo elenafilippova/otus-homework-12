@@ -10,7 +10,7 @@ body {
 .header {
   position: relative;
   z-index: 20;
-  font-family: "YS Text",arial,sans-serif;
+  font-family: "YS Text", arial, sans-serif;
   background: #fff;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -35,91 +35,90 @@ body {
 }
 
 .search-div {
-    display: inline-block;
-    position: relative;
-    background-color: #fff;   
-    margin-left: 290px;
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  margin-left: 290px;
 }
 
 .search-input {
-    outline: 0;
-    height: 25px;
-    width: 350px;
-    padding: 0 1.6rem;
-    border-radius: 6px;
-    position: relative;
-  }
+  outline: 0;
+  height: 25px;
+  width: 350px;
+  padding: 0 1.6rem;
+  border-radius: 6px;
+  position: relative;
+}
 
-  .search-button{
-    vertical-align: middle; 
-    border: 0; 
-    background: url("/src/icons/search.png") no-repeat;
-    width: 28px;
-    height: 28px;
-    margin-left: 5px;
-  }
+.search-button {
+  vertical-align: middle;
+  border: 0;
+  background: url("/src/icons/search.png") no-repeat;
+  width: 28px;
+  height: 28px;
+  margin-left: 5px;
+}
 
-  .section {
-    margin-top: 60px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 40px;
-  }
+.section {
+  margin-top: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 40px;
+}
 
-  .section .section-content {
-    max-width: 1440px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 0;
+.section .section-content {
+  max-width: 1440px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
 
-  }
+#app {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-  #app {
-    height: 500px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  
-  #app > * {
-    margin: 0 2rem;
-    border-radius: 1.5rem;
-  }
+#app > * {
+  margin: 0 2rem;
+  border-radius: 1.5rem;
+}
 
-  .weather-container {
-      background-color: aqua;
-      width: 1440px;
-      height: 450px;
-      margin-bottom: 30px;
-      display: flex;
-      filter: drop-shadow(0 0 7px rgba(0, 0, 0, 0.5));
-      border-radius: 20px;
-  }
+.weather-container {
+  background-color: aqua;
+  width: 1440px;
+  height: 450px;
+  margin-bottom: 30px;
+  display: flex;
+  filter: drop-shadow(0 0 7px rgba(0, 0, 0, 0.5));
+  align-items: center;
+  border-radius: 20px;
+}
 
-  .weather {
-    width: 340px;
-    max-width: 340px;
-    height: 100%;
-    text-align: center;
-  }
-  
-  .map {
-    width: 730px;
-    max-width: 730px;
-    height: 100%;
-    text-align: center;
-    background-color: chartreuse;   
+.weather {
+  width: 340px;
+  max-width: 340px;
+  text-align: center;
+}
+
+.map {
+  width: 730px;
+  max-width: 730px;
+  height: 100%;
+  text-align: center;
+  background-color: chartreuse;
 }
 
 .city-list {
@@ -129,7 +128,38 @@ body {
   text-align: center;
 }
 
+.block-info {
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
+/* Блок отображения данных температуры  */
+.city-name {
+  font-size: 45px;
+  font-family: sans-serif;
+}
+.date-time-now {
+  color: darkslateblue;
+  font-family: sans-serif;
+  font-size: 16px;
+  margin-top: 20px;
+}
 
+.temperature-with-icon {
+  display: flex;
+  height: 100px;
+  margin: 45px;
+  align-items: center;
+}
 
+.temperature-text {
+  font-size: 35px;
+  font-weight: bold;
+}
 
+.weather-icon {
+  margin: 20px;
+}

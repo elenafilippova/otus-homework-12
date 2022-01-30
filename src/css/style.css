@@ -99,7 +99,7 @@ body {
 .weather-container {
   background-color: aqua;
   width: 1440px;
-  height: 450px;
+  height: 480px;
   margin-bottom: 30px;
   display: flex;
   filter: drop-shadow(0 0 7px rgba(0, 0, 0, 0.5));
@@ -121,6 +121,7 @@ body {
   background-color: chartreuse;
 }
 
+/* Блок отображения списка городов */
 .city-list {
   width: 370px;
   max-width: 370px;
@@ -128,18 +129,38 @@ body {
   text-align: center;
 }
 
+.city-list-container {
+  width: calc(100% - 1em);
+  margin: 0 2rem 0 0.5rem;
+  border-radius: 0 0 12px 12px;
+  opacity: 0.9;
+}
+
+.city_list_button {
+  height: 25px;
+  overflow-wrap: break-word;
+  border-radius: 10px;
+  box-shadow: 0 0.3rem 0.5rem -0.1rem rgba(51, 51, 51, 0.23);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98),
+    box-shadow 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98);
+}
+
 .block-info {
   margin-top: 20px;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Блок отображения данных температуры  */
 .city-name {
   font-size: 45px;
   font-family: sans-serif;
+  overflow-wrap: break-word;
 }
 .date-time-now {
   color: darkslateblue;

@@ -18,7 +18,7 @@ export default function getNowDateDescription() {
   ];
   let dateDescription = `${days[now.getDay()]}, ${now.getDate()} `;
   dateDescription += `${months[now.getMonth()]} ${now.getFullYear()}, `;
-  dateDescription += `${now.getUTCHours()}:${now.getUTCMinutes()}`;
+  dateDescription += `${now.getHours()}:${now.getUTCMinutes()}`;
 
   return dateDescription;
 }

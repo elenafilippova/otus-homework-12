@@ -10,3 +10,14 @@ export async function getWeatherByCityName(cityName) {
     return null;
   }
 }
+
+export async function getUserCurrentCity() {
+  try {
+    const response = await fetch("https://get.geojs.io/v1/ip/geo.json");
+    const geoData = await response.json();
+    const city = geoData.city.toString();
+    return city;
+  } catch (error) {
+    return null;
+  }
+}

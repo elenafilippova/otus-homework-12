@@ -11,6 +11,15 @@ export class WeatherView {
     this.weatherContainerDiv = weatherContainerDiv;
     this.appDiv.appendChild(weatherContainerDiv);
 
+    this.addEventListeners();
+  }
+
+  async initCityList() {
+    await this.weatherController.initCityList();
+    this.updateView();
+  }
+
+  addEventListeners() {
     const searchButton = document.getElementById("search-button");
 
     searchButton.addEventListener("click", async (ev) => {
@@ -21,12 +30,8 @@ export class WeatherView {
       inputEl.value = "";
 
       if (cityName !== "") {
-        const resultIsOk = await this.weatherController.addWeatherItem(
-          cityName
-        );
-        if (resultIsOk) {
-          this.updateView();
-        }
+        await this.weatherController.addNewWeatherItem(cityName);
+        this.updateView();
       }
     });
   }
@@ -41,7 +46,14 @@ export class WeatherView {
   updateWeatherInfo() {
     const weatherDiv = document.createElement("div");
     weatherDiv.classList.add("weather");
-    if (this.weatherController.weatherItems.length > 0) {
+
+    if (
+      this.weatherController.selectedWeatherId === -1 ||
+      this.weatherController.weatherItems.length === 0
+    ) {
+      weatherDiv.innerHTML =
+        "<div class='block-info'>Информация о погоде не найдена</div>";
+    } else {
       const selectedWeatherId = +this.weatherController.selectedWeatherId;
       const weatherItem =
         this.weatherController.weatherItems[selectedWeatherId];
@@ -75,24 +87,66 @@ export class WeatherView {
       tempDiv.classList.add("temperature-text");
       tempDiv.innerHTML = tempHtml;
       weatherDiv.appendChild(tempDiv);
-    } else {
-      weatherDiv.innerHTML =
-        "<div class='block-info'>Информация о погоде не найдена</div>";
     }
+
     this.weatherContainerDiv.appendChild(weatherDiv);
   }
 
   updateGoogleMap() {
     const mapDiv = document.createElement("div");
     mapDiv.classList.add("map");
-    mapDiv.innerHTML = "<div class='block-info'>map is here</div>";
+
+    if (this.weatherController.selectedWeatherId === -1) {
+      mapDiv.innerHTML = "<div class='block-info'>gogle map not found</div>";
+    } else {
+      const apiKey = "";
+      const weatherItem = this.weatherController.weatherItems[0];
+      const requestToGoogleMaps =
+        `https://maps.googleapis.com/maps/api/staticmap?` +
+        `center=${weatherItem.cityName}` +
+        `&zoom=10` +
+        `&size=500x500` +
+        `&key=${apiKey}`;
+      mapDiv.setAttribute("src", requestToGoogleMaps);
+    }
+
     this.weatherContainerDiv.appendChild(mapDiv);
   }
 
   updateCityList() {
     const cityListDiv = document.createElement("div");
     cityListDiv.classList.add("city-list");
-    cityListDiv.innerHTML = "<div class='block-info'>city-list is here</div>";
+
     this.weatherContainerDiv.appendChild(cityListDiv);
+
+    const cityListContainerDiv = document.createElement("div");
+    cityListContainerDiv.classList.add("city-list-container");
+    cityListDiv.appendChild(cityListContainerDiv);
+
+    if (this.weatherController.weatherItems.length > 0) {
+      const citiesList = this.weatherController.weatherItems;
+      citiesList.forEach((item, index) => {
+        const a = document.createElement("a");
+        a.innerText = item.cityName;
+        a.classList.add("block-info");
+        a.classList.add("city_list_button");
+        a.setAttribute("id", index);
+
+        cityListContainerDiv.appendChild(a);
+
+        a.addEventListener("click", async (ev) => {
+          ev.preventDefault();
+          const itemIndex = +a.getAttribute("id");
+          await this.weatherController.updateExistingWeatherItem(
+            item.cityName,
+            itemIndex
+          );
+          this.updateView();
+        });
+      });
+    } else {
+      cityListContainerDiv.innerHTML =
+        "<div class='block-info'>Список городов пока пуст..</div>";
+    }
   }
 }
